@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+
+<?import javafx.scene.control.Tooltip?>
+<AnchorPane fx:id="root" xmlns:fx="http://javafx.com/fxml">
+    <VBox fx:id="rootVBox"
+          AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0"
+          AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0">
+        <MenuBar fx:id="mainMenu" prefWidth="${root.width}"
+                 AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0">
+            <Menu text="Правка">
+                <MenuItem text="_Копировать (Ctrl + C)" onAction="#copyHandler" />
+                <MenuItem text="_Вставить (Ctrl + V)" onAction="#insertHandler" />
+            </Menu>
+            <Menu text="Справка">
+                <MenuItem text="История вычислений" onAction="#historyHandler"/>
+                <MenuItem text="Автор" onAction="#authorHandler"/>
+            </Menu>
+        </MenuBar>
+        <GridPane alignment="BASELINE_CENTER" maxHeight="Infinity">
+            <TextField fx:id="output"
+                       prefWidth="${root.width}"
+                       prefHeight="${root.height * 0.1}"
+                       GridPane.rowIndex="0"
+                       GridPane.columnSpan="6"
+                       alignment="CENTER_RIGHT"
+                       style="-fx-font-size: 2em"
+            >
+                <GridPane.margin>
+                    <Insets top="18" bottom="18"/>
+                </GridPane.margin>
+                <tooltip>
+                    <Tooltip text="Окно ввода / вывода"/>
+                </tooltip>
+            </TextField>
+            <Button fx:id="backspace"
+                    style="-fx-text-fill: red; -fx-font-weight: bold;"
+                    prefWidth="${root.width * 0.3}"
+                    prefHeight="${root.height * 0.1}"
+                    GridPane.columnIndex="0"
+                    GridPane.rowIndex="1"
+                    GridPane.columnSpan="2"
+                    text="Забой">
+                <tooltip>
+                    <Tooltip text="Удалить крайний правый символ"/>
+                </tooltip>
+            </Button>
+            <Button fx:id="clearEnter"
+                    style="-fx-text-fill: red; -fx-font-weight: bold;"
+                    prefWidth="${root.width * 0.3}"
+                    prefHeight="${root.height * 0.1}"
+                    GridPane.columnIndex="2"
+                    GridPane.rowIndex="1"
+                    GridPane.columnSpan="2"
+                    text="CE">
+                <tooltip>
+                    <Tooltip text="Заменить ввод нулем"/>
+                </tooltip>
+            </Button>
+            <Button fx:id="clear"
+                    style="-fx-text-fill: red; -fx-font-weight: bold;"
+                    prefWidth="${root.width * 0.3}"
+                    prefHeight="${root.height * 0.1}"
+                    GridPane.columnIndex="4"
+                    GridPane.rowIndex="1"
+                    GridPane.columnSpan="2"
+                    text="C">
+                <tooltip>
+                    <Tooltip text="Сбросить в начальное состояние"/>
+                </tooltip>
+            </Button>
+            <Button fx:id="memoryClean"
+                    style="-fx-text-fill: red; -fx-font-weight: bold;"
+                    prefWidth="${root.width * 0.15}"
+                    prefHeight="${root.height * 0.1}"
+                    GridPane.columnIndex="0"
+                    GridPane.rowIndex="2"
+                    GridPane.columnSpan="1"
+                    text="MC">
+                <tooltip>
+                    <Tooltip text="Очистить память"/>
+                </tooltip>
+            </Button>
+            <Button fx:id="seven"
+                    style="-fx-text-fill: blue; -fx-font-weight: bold;"
+                    prefWidth="${root.width * 0.15}"
+                    prefHeight="${root.height * 0.1}"
+                    GridPane.columnIndex="1"
+                    GridPane.rowIndex="2"
+                    GridPane.columnSpan="1"
+                    text="7">
+                <tooltip>
+                    <Tooltip text="Ввести 7"/>
+                </tooltip>
+            </Button>
+            <Button fx:id="eight"
+                    style="-fx-text-fill: blue; -fx-font-weight: bold;"
+                    prefWidth="${root.width * 0.15}"
+                    prefHeight="${root.height * 0.1}"
+                    GridPane.columnIndex="2"
+                    GridPane.rowIndex="2"
+                    GridPane.columnSpan="1"
+                    text="8">
+                <tooltip>
+                    <Tooltip text="Ввести 8"/>
+                </tooltip>
+            </Button>
+            <Button fx:id="nine"
+                    style="-fx-text-fill: blue; -fx-font-weight: bold;"
+                    prefWidth="${root.width * 0.15}"
+                    prefHeight="${root.height * 0.1}"
+                    GridPane.columnIndex="3"
+                    GridPane.rowIndex="2"
+                    GridPane.columnSpan="1"
+                    text="9">
+                <tooltip>
+                    <Tooltip text="Ввести 9"/>
+                </tooltip>
+            </Button>
+            <Button fx:id="divide"
+                    style="-fx-text-fill: red; -fx-font-weight: bold;"
+                    prefWidth="${root.width * 0.15}"
+                    prefHeight="${root.height * 0.1}"
+                    GridPane.columnIndex="4"
+                    GridPane.rowIndex="2"
+                    GridPane.columnSpan="1"
+                    text="/">
+                <tooltip>
+                    <Tooltip text="Разделить"/>
+                </tooltip>
+            </Button>
+            <Button fx:id="square"
+                    style="-fx-text-fill: blue; -fx-font-weight: bold;"
+                    prefWidth="${root.width * 0.15}"
+                    prefHeight="${root.height * 0.1}"
+                    GridPane.columnIndex="5"
+                    GridPane.rowIndex="2"
+                    GridPane.columnSpan="1"
+                    text="Sqr">
+                <tooltip>
+                    <Tooltip text="Возвести в квадрат"/>
+                </tooltip>
+            </Button>
+            <Button fx:id="memoryResult"
+                    style="-fx-text-fill: red; -fx-font-weight: bold;"
+                    prefWidth="${root.width * 0.15}"
+                    prefHeight="${root.height * 0.1}"
+                    GridPane.columnIndex="0"
+                    GridPane.rowIndex="3"
+                    GridPane.columnSpan="1"
+                    text="MR">
+                <tooltip>
+                    <Tooltip text="Ввести из памяти"/>
+                </tooltip>
+            </Button>
+            <Button fx:id="four"
+                    style="-fx-text-fill: blue; -fx-font-weight: bold;"
+                    prefWidth="${root.width * 0.15}"
+                    prefHeight="${root.height * 0.1}"
+                    GridPane.columnIndex="1"
+                    GridPane.rowIndex="3"
+                    GridPane.columnSpan="1"
+                    text="4">
+                <tooltip>
+                    <Tooltip text="Ввести 4"/>
+                </tooltip>
+            </Button>
+            <Button fx:id="five"
+                    style="-fx-text-fill: blue; -fx-font-weight: bold;"
+                    prefWidth="${root.width * 0.15}"
+                    prefHeight="${root.height * 0.1}"
+                    GridPane.columnIndex="2"
+                    GridPane.rowIndex="3"
+                    GridPane.columnSpan="1"
+                    text="5">
+                <tooltip>
+                    <Tooltip text="Ввести 5"/>
+                </tooltip>
+            </Button>
+            <Button fx:id="six"
+                    style="-fx-text-fill: blue; -fx-font-weight: bold;"
+                    prefWidth="${root.width * 0.15}"
+                    prefHeight="${root.height * 0.1}"
+                    GridPane.columnIndex="3"
+                    GridPane.rowIndex="3"
+                    GridPane.columnSpan="1"
+                    text="6">
+                <tooltip>
+                    <Tooltip text="Ввести 6"/>
+                </tooltip>
+            </Button>
+            <Button fx:id="multiple"
+                    style="-fx-text-fill: red; -fx-font-weight: bold;"
+                    prefWidth="${root.width * 0.15}"
+                    prefHeight="${root.height * 0.1}"
+                    GridPane.columnIndex="4"
+                    GridPane.rowIndex="3"
+                    GridPane.columnSpan="1"
+                    text="*">
+                <tooltip>
+                    <Tooltip text="Умножить"/>
+                </tooltip>
+            </Button>
+            <Button fx:id="revert"
+                    style="-fx-text-fill: blue; -fx-font-weight: bold;"
+                    prefWidth="${root.width * 0.15}"
+                    prefHeight="${root.height * 0.1}"
+                    GridPane.columnIndex="5"
+                    GridPane.rowIndex="3"
+                    GridPane.columnSpan="1"
+                    text="1/x">
+                <tooltip>
+                    <Tooltip text="Обратить ввод"/>
+                </tooltip>
+            </Button>
+            <Button fx:id="memorySave"
+                    style="-fx-text-fill: red; -fx-font-weight: bold;"
+                    prefWidth="${root.width * 0.15}"
+                    prefHeight="${root.height * 0.1}"
+                    GridPane.columnIndex="0"
+                    GridPane.rowIndex="4"
+                    GridPane.columnSpan="1"
+                    text="MS">
+                <tooltip>
+                    <Tooltip text="Сохранить в память"/>
+                </tooltip>
+            </Button>
+            <Button fx:id="one"
+                    style="-fx-text-fill: blue; -fx-font-weight: bold;"
+                    prefWidth="${root.width * 0.15}"
+                    prefHeight="${root.height * 0.1}"
+                    GridPane.columnIndex="1"
+                    GridPane.rowIndex="4"
+                    GridPane.columnSpan="1"
+                    text="1">
+                <tooltip>
+                    <Tooltip text="Ввести 1"/>
+                </tooltip>
+            </Button>
+            <Button fx:id="two"
+                    style="-fx-text-fill: blue; -fx-font-weight: bold;"
+                    prefWidth="${root.width * 0.15}"
+                    prefHeight="${root.height * 0.1}"
+                    GridPane.columnIndex="2"
+                    GridPane.rowIndex="4"
+                    GridPane.columnSpan="1"
+                    text="2">
+                <tooltip>
+                    <Tooltip text="Ввести 2"/>
+                </tooltip>
+            </Button>
+            <Button fx:id="three"
+                    style="-fx-text-fill: blue; -fx-font-weight: bold;"
+                    prefWidth="${root.width * 0.15}"
+                    prefHeight="${root.height * 0.1}"
+                    GridPane.columnIndex="3"
+                    GridPane.rowIndex="4"
+                    GridPane.columnSpan="1"
+                    text="3">
+                <tooltip>
+                    <Tooltip text="Ввести 3"/>
+                </tooltip>
+            </Button>
+            <Button fx:id="minus"
+                    style="-fx-text-fill: red; -fx-font-weight: bold;"
+                    prefWidth="${root.width * 0.15}"
+                    prefHeight="${root.height * 0.1}"
+                    GridPane.columnIndex="4"
+                    GridPane.rowIndex="4"
+                    GridPane.columnSpan="1"
+                    text="-">
+                <tooltip>
+                    <Tooltip text="Вычесть"/>
+                </tooltip>
+            </Button>
+            <Label fx:id="memoryUsed"
+                   prefWidth="${root.width * 0.15}"
+                   prefHeight="${root.height * 0.1}"
+                   GridPane.columnIndex="5"
+                   GridPane.rowIndex="4"
+                   GridPane.columnSpan="1"
+                   alignment="CENTER"
+                   style="-fx-font-size: 2em"
+            >
+                <tooltip>
+                    <Tooltip text="Признак значения в памяти"/>
+                </tooltip>
+            </Label>
+            <Button fx:id="memoryAdd"
+                    style="-fx-text-fill: red; -fx-font-weight: bold;"
+                    prefWidth="${root.width * 0.15}"
+                    prefHeight="${root.height * 0.1}"
+                    GridPane.columnIndex="0"
+                    GridPane.rowIndex="5"
+                    GridPane.columnSpan="1"
+                    text="M+">
+                <tooltip>
+                    <Tooltip text="Добавить к значению в памяти"/>
+                </tooltip>
+            </Button>
+            <Button fx:id="zero"
+                    style="-fx-text-fill: blue; -fx-font-weight: bold;"
+                    prefWidth="${root.width * 0.15}"
+                    prefHeight="${root.height * 0.1}"
+                    GridPane.columnIndex="1"
+                    GridPane.rowIndex="5"
+                    GridPane.columnSpan="1"
+                    text="0">
+                <tooltip>
+                    <Tooltip text="Ввести 0"/>
+                </tooltip>
+            </Button>
+            <Button fx:id="sign"
+                    style="-fx-text-fill: blue; -fx-font-weight: bold;"
+                    prefWidth="${root.width * 0.15}"
+                    prefHeight="${root.height * 0.1}"
+                    GridPane.columnIndex="2"
+                    GridPane.rowIndex="5"
+                    GridPane.columnSpan="1"
+                    text="+/-">
+                <tooltip>
+                    <Tooltip text="Сменить знак ввода"/>
+                </tooltip>
+            </Button>
+            <Button fx:id="point"
+                    style="-fx-text-fill: blue; -fx-font-weight: bold;"
+                    prefWidth="${root.width * 0.15}"
+                    prefHeight="${root.height * 0.1}"
+                    GridPane.columnIndex="3"
+                    GridPane.rowIndex="5"
+                    GridPane.columnSpan="1"
+                    text=",">
+                <tooltip>
+                    <Tooltip text="Ввести разделитель дробной части"/>
+                </tooltip>
+            </Button>
+            <Button fx:id="plus"
+                    style="-fx-text-fill: red; -fx-font-weight: bold;"
+                    prefWidth="${root.width * 0.15}"
+                    prefHeight="${root.height * 0.1}"
+                    GridPane.columnIndex="4"
+                    GridPane.rowIndex="5"
+                    GridPane.columnSpan="1"
+                    text="+">
+                <tooltip>
+                    <Tooltip text="Сложить"/>
+                </tooltip>
+            </Button>
+            <Button fx:id="result"
+                    style="-fx-text-fill: red; -fx-font-weight: bold;"
+                    prefWidth="${root.width * 0.15}"
+                    prefHeight="${root.height * 0.1}"
+                    GridPane.columnIndex="5"
+                    GridPane.rowIndex="5"
+                    GridPane.columnSpan="1"
+                    text="=">
+                <tooltip>
+                    <Tooltip text="Вычислить результат"/>
+                </tooltip>
+            </Button>
+            <Button fx:id="aNumber"
+                    style="-fx-text-fill: blue; -fx-font-weight: bold;"
+                    prefWidth="${root.width * 0.15}"
+                    prefHeight="${root.height * 0.1}"
+                    GridPane.columnIndex="0"
+                    GridPane.rowIndex="6"
+                    GridPane.columnSpan="1"
+                    disable="true"
+                    text="A">
+                <tooltip>
+                    <Tooltip text="Ввести A"/>
+                </tooltip>
+            </Button>
+            <Button fx:id="bNumber"
+                    style="-fx-text-fill: blue; -fx-font-weight: bold;"
+                    prefWidth="${root.width * 0.15}"
+                    prefHeight="${root.height * 0.1}"
+                    GridPane.columnIndex="1"
+                    GridPane.rowIndex="6"
+                    GridPane.columnSpan="1"
+                    disable="true"
+                    text="B">
+                <tooltip>
+                    <Tooltip text="Ввести B"/>
+                </tooltip>
+            </Button>
+            <Button fx:id="cNumber"
+                    style="-fx-text-fill: blue; -fx-font-weight: bold;"
+                    prefWidth="${root.width * 0.15}"
+                    prefHeight="${root.height * 0.1}"
+                    GridPane.columnIndex="2"
+                    GridPane.rowIndex="6"
+                    GridPane.columnSpan="1"
+                    disable="true"
+                    text="C">
+                <tooltip>
+                    <Tooltip text="Ввести C"/>
+                </tooltip>
+            </Button>
+            <Button fx:id="dNumber"
+                    style="-fx-text-fill: blue; -fx-font-weight: bold;"
+                    prefWidth="${root.width * 0.15}"
+                    prefHeight="${root.height * 0.1}"
+                    GridPane.columnIndex="3"
+                    GridPane.rowIndex="6"
+                    GridPane.columnSpan="1"
+                    disable="true"
+                    text="D">
+                <tooltip>
+                    <Tooltip text="Ввести D"/>
+                </tooltip>
+            </Button>
+            <Button fx:id="eNumber"
+                    style="-fx-text-fill: blue; -fx-font-weight: bold;"
+                    prefWidth="${root.width * 0.15}"
+                    prefHeight="${root.height * 0.1}"
+                    GridPane.columnIndex="4"
+                    GridPane.rowIndex="6"
+                    GridPane.columnSpan="1"
+                    disable="true"
+                    text="E">
+                <tooltip>
+                    <Tooltip text="Ввести E"/>
+                </tooltip>
+            </Button>
+            <Button fx:id="fNumber"
+                    style="-fx-text-fill: blue; -fx-font-weight: bold;"
+                    prefWidth="${root.width * 0.15}"
+                    prefHeight="${root.height * 0.1}"
+                    GridPane.columnIndex="5"
+                    GridPane.rowIndex="6"
+                    GridPane.columnSpan="1"
+                    disable="true"
+                    text="F">
+                <tooltip>
+                    <Tooltip text="Ввести F"/>
+                </tooltip>
+            </Button>
+            <Label text="Основание:"
+                   style="-fx-font-style: italic;
+                          -fx-font-size: 1.5em"
+                   GridPane.columnIndex="0"
+                   GridPane.rowIndex="7"
+                   GridPane.columnSpan="2"
+            />
+            <Spinner fx:id="base"
+                     maxWidth="Infinity"
+                     prefHeight="30"
+                     GridPane.columnIndex="2"
+                     GridPane.rowIndex="7"
+                     GridPane.columnSpan="6"
+                     min="2"
+                     max="16"
+                     initialValue="10"
+                     style="-fx-font-size: 1.2em"
+            >
+                <GridPane.margin>
+                    <Insets top="18" bottom="18"/>
+                </GridPane.margin>
+                <tooltip>
+                    <Tooltip text="Установить систему счисления"/>
+                </tooltip>
+            </Spinner>
+        </GridPane>
+    </VBox>
+</AnchorPane>
